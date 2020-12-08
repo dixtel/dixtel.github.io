@@ -109,7 +109,7 @@ class Interface {
                 else
                     poss = poss.toFixed(2);
 
-                document.getElementById(id).querySelector("span").innerText = poss;
+                document.getElementById(id).querySelector("div").innerText = poss;
 
                 if (person.is_board_elemtn_blocked(board_element)) {
                     document.getElementById(id).querySelector("button").disabled = true;
@@ -129,7 +129,7 @@ class Interface {
             else
                 poss = poss.toFixed(2);
 
-            document.getElementById(id).querySelectorAll("span")[1].innerText = poss;
+            document.getElementById(id).querySelectorAll("div")[1].innerText = poss;
         }
     }
 
@@ -160,22 +160,30 @@ class Interface {
             button.innerText += " (" + board_element + ")";
         }
         else {
-            button.innerText = button.innerText.slice(0, button.innerText.length-1) + ", " + board_element + ")";
+            button.innerText = button.innerText.slice(0, button.innerText.length - 1) + ", " + board_element + ")";
         }
     }
 
     static clear_vote_button(board_element) {
         document.getElementById("end-vote").innerText = "End Vote";
     }
+
+    static block_element(board_element) {
+        let id = BoardElements.findIndex((val) => val == board_element);
+        let elem = document.querySelectorAll(".board_element_name")[id];
+        elem.parentElement.parentElement.style.opacity = "0.7";
+
+        for (let i = 0; i < BoardPersons.length; i++) {
+            _global_persons[BoardPersons[i]].block_board_element(board_element);
+        }
+
+        Interface.update()
+    }
 }
 
 function block_board_element(elem) {
-    let board_element = elem.parentElement.querySelector("span").innerText;
-    for (let i = 0; i < BoardPersons.length; i++) {
-        _global_persons[BoardPersons[i]].block_board_element(board_element);
-    }
-
-    Interface.update();
+    let board_element = elem.parentElement.querySelector("div").innerText;
+    Interface.block_element(board_element);
 }
 
 function vote(person_id, elem) {
@@ -216,7 +224,7 @@ function create_persons() {
 
 window.onload = function () {
     let template = document.getElementsByTagName("template")[0];
-    let table = document.getElementById("table");
+    let table = document.getElementById("table").querySelector("tbody");
 
     for (let i = 0; i < BoardElements.length; i++) {
         const board_element = BoardElements[i];
