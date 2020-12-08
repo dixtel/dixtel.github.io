@@ -1,1 +1,70 @@
-Hello cluedo
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes</title>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <table id="table">
+      <tr>
+        <th>-</th>
+        <th>Ivasqu</th>
+        <th>Florentina</th>
+        <th>Victor</th>
+        <th>Balan</th>
+        <th>Ana</th>
+        <th>Cantemir</th>
+      </tr>
+      <template>
+        <tr class="table-row">
+          <td>
+              <button onclick="block_board_element(this)">X</button>
+              <span class="board_element_name"></span>
+              <span class="summary_possibility">0</span>
+            </td>
+          <td>
+            <button class="vote-button" onclick="vote(0, this)">
+              +
+            </button>
+            <span class="possibility">0</span>
+          </td>
+          <td>
+            <button class="vote-button" onclick="vote(1, this)">
+              +
+            </button>
+            <span class="possibility">0</span>
+          </td>
+          <td>
+            <button class="vote-button" onclick="vote(2, this)">
+              +
+            </button>
+            <span class="possibility">0</span>
+          </td>
+          <td>
+            <button class="vote-button" onclick="vote(3, this)">
+              +
+            </button>
+            <span class="possibility">0</span>
+          </td>
+          <td>
+            <button class="vote-button" onclick="vote(4, this)">
+              +
+            </button>
+            <span class="possibility">0</span>
+          </td>
+          <td>
+            <button class="vote-button" onclick="vote(5, this)">
+              +
+            </button>
+            <span class="possibility">0</span>
+          </td>
+        </tr>
+      </template>
+    </table>
+
+    <button disabled="true" id="end-vote" onclick="end_vote()">End Vote</button>
+  </body>
+</html>
