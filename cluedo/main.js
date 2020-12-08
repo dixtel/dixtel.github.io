@@ -109,7 +109,7 @@ class Interface {
                 else
                     poss = poss.toFixed(2);
 
-                document.getElementById(id).querySelector("div").innerText = poss;
+                document.getElementById(id).querySelector("button").innerText = poss;
 
                 if (person.is_board_elemtn_blocked(board_element)) {
                     document.getElementById(id).querySelector("button").disabled = true;
