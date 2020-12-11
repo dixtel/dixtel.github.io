@@ -129,17 +129,17 @@ class Interface {
             else
                 poss = poss.toFixed(2);
 
-            document.getElementById(id).querySelectorAll("div")[1].innerText = poss;
+            document.getElementById(id).querySelector(".summary-possibility").innerText = poss;
         }
     }
 
     static disable_end_vote() {
-        document.getElementById("end-vote").disabled = true;
+        document.getElementById("end-vote-btn").disabled = true;
 
     }
 
     static enable_end_vote() {
-        document.getElementById("end-vote").disabled = false;
+        document.getElementById("end-vote-btn").disabled = false;
     }
 
     static unlock_buttons() {
@@ -149,29 +149,28 @@ class Interface {
                 let board_element = BoardElements[j];
 
                 let id = Person.get_id(person_name, board_element);
-                document.getElementById(id).querySelector("button").disabled = false;
+                document.getElementById(id).querySelector(".vote-button").disabled = false;
             }
         }
     }
 
     static add_board_element_to_vote_button(board_element) {
-        let button = document.getElementById("end-vote");
+        let button = document.getElementById("end-vote-btn");
         if (button.innerText == "End Vote") {
             button.innerText += " (" + board_element + ")";
-        }
-        else {
+        } else {
             button.innerText = button.innerText.slice(0, button.innerText.length - 1) + ", " + board_element + ")";
         }
     }
 
     static clear_vote_button(board_element) {
-        document.getElementById("end-vote").innerText = "End Vote";
+        document.getElementById("end-vote-btn").innerText = "End Vote";
     }
 
     static block_element(board_element) {
         let id = BoardElements.findIndex((val) => val == board_element);
-        let elem = document.querySelectorAll(".board_element_name")[id];
-        elem.parentElement.parentElement.style.opacity = "0.7";
+        let elem = document.querySelectorAll(".board-element-name")[id];
+        elem.parentElement.parentElement.style.opacity = "0.5";
 
         for (let i = 0; i < BoardPersons.length; i++) {
             _global_persons[BoardPersons[i]].block_board_element(board_element);
@@ -182,20 +181,19 @@ class Interface {
 }
 
 function block_board_element(elem) {
-    let board_element = elem.parentElement.querySelector("div").innerText;
+    let board_element = elem.parentElement.querySelector(".board-element-name").innerText;
     Interface.block_element(board_element);
 }
 
 function vote(person_id, elem) {
     if (_global_current_voted_person == null) {
         _global_current_voted_person = BoardPersons[person_id];
-    }
-    else {
+    } else {
         if (BoardPersons[person_id] != _global_current_voted_person)
             return;
     }
 
-    let board_element = elem.parentElement.parentElement.getElementsByClassName("board_element_name")[0].innerText;
+    let board_element = elem.parentElement.parentElement.querySelector(".board-element-name").innerText;
     _global_persons[BoardPersons[person_id]].vote(board_element);
     elem.disabled = true;
     Interface.enable_end_vote();
@@ -222,29 +220,29 @@ function create_persons() {
 }
 
 
-window.onload = function () {
+window.onload = function() {
     let template = document.getElementsByTagName("template")[0];
-    let table = document.getElementById("table").querySelector("tbody");
+    let table = document.getElementById("container");
 
     for (let i = 0; i < BoardElements.length; i++) {
         const board_element = BoardElements[i];
         let elem = template.content.cloneNode(true);
-        elem.querySelector("td").querySelector(".board_element_name").innerText = board_element;
+        elem.querySelector(".board-element-name").innerText = board_element;
+        elem.querySelector(".board-element").id = BoardElement.get_id(board_element);
 
-        let elem_persons = elem.querySelectorAll("td");
+        let votes = elem.querySelectorAll(".vote-container");
 
-        elem_persons[0].id = BoardElement.get_id(board_element);
-
-        for (let j = 1; j < elem_persons.length; j++) {
+        for (let j = 0; j < votes.length; j++) {
             let id = Person.get_id(
-                BoardPersons[j - 1], BoardElements[i]
+                BoardPersons[j], BoardElements[i]
             );
-            elem_persons[j].id = id;
+            votes[j].id = id;
         }
 
         table.appendChild(elem);
     }
 
+    template.remove();
 
     _global_persons = create_persons();
 };

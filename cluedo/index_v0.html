@@ -1,0 +1,57 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes</title>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <table id="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <template>
+          <tr class="table-row">
+            <td>
+              <button class="remove-btn" onclick="block_board_element(this)">
+                X
+              </button>
+              <div class="board_element_name"></div>
+              <div class="summary_possibility">0</div>
+            </td>
+            <td>
+              <button class="vote-button" onclick="vote(0, this)">0</button>
+            </td>
+            <td>
+              <button class="vote-button" onclick="vote(1, this)">0</button>
+            </td>
+            <td>
+              <button class="vote-button" onclick="vote(2, this)">0</button>
+            </td>
+            <td>
+              <button class="vote-button" onclick="vote(3, this)">0</button>
+            </td>
+            <td>
+              <button class="vote-button" onclick="vote(4, this)">0</button>
+            </td>
+            <td>
+              <button class="vote-button" onclick="vote(5, this)">0</button>
+            </td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+    <button disabled="true" id="end-vote" onclick="end_vote()">End Vote</button>
+  </body>
+</html>
