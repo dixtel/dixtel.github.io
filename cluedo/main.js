@@ -174,7 +174,7 @@ class Interface {
     static block_element(board_element) {
         let id = BoardElements.findIndex((val) => val == board_element);
         let elem = document.querySelectorAll(".board-element-name")[id];
-        elem.parentElement.parentElement.style.opacity = "0.5";
+        elem.parentElement.parentElement.style.opacity = "0.1";
 
         for (let i = 0; i < BoardPersons.length; i++) {
             _global_persons[BoardPersons[i]].block_board_element(board_element);
