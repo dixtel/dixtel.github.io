@@ -13,10 +13,11 @@ body {
 
 .row:nth-of-type(1) {
     height: 30px;
+    padding-top: 10px;
 }
 
 .player-name-input {
-    width: 100%;
+    width: 14%;
     height: 80%;
     background-color: rgba(255, 255, 255, 0.1);
     border: none;
@@ -33,10 +34,11 @@ body {
 }
 
 .remove {
-    width: 10%;
+    width: 10px;
+    height: 10px;
     display: inline-block;
-    color: red;
-    font-size: 20px;
+    background-color: red;
+    font-size: 10px;
     font-weight: bold;
     cursor: pointer;
 }
@@ -44,7 +46,7 @@ body {
 .board-element-name {
     display: inline-block;
     width: 50%;
-    font-size: 1.6vw;
+    font-size: 10px;
     font-weight: bold;
     color: white;
 }
@@ -53,113 +55,109 @@ body {
     display: inline-block;
     width: 20%;
     color: white;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 .vote-container {
     display: inline-block;
-    width: 9%;
+    width: 7%;
 }
 
 .vote {
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.15);
     padding: 5 0 5;
+    font-size: 10px;
+    color: white;
+    border-radius: 5px;
 }
 
 .vote:hover {
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.3);
-    
-}
-
-
-.row:nth-of-type(2) .board-element-name {
-    color: yellow;
 }
 
 .row:nth-of-type(3) .board-element-name {
-    color: green;
+    color: yellow;
 }
 
 .row:nth-of-type(4) .board-element-name {
-    color: rgb(55, 0, 206);
+    color: green;
 }
 
 .row:nth-of-type(5) .board-element-name {
-    color: white;
+    color: rgb(55, 0, 206);
 }
 
 .row:nth-of-type(6) .board-element-name {
-    color: red;
+    color: white;
 }
 
 .row:nth-of-type(7) .board-element-name {
+    color: red;
+}
+
+.row:nth-of-type(8) .board-element-name {
     color: blue;
 }
 
-.row:nth-of-type(1) .vote-container:nth-child(2) {
+.row:nth-of-type(1) input:nth-child(1) {
     border-bottom: 3px solid yellow;
 }
 
-.row:nth-of-type(1) .vote-container:nth-child(3) {
+.row:nth-of-type(1) input:nth-child(2) {
     border-bottom: 3px solid green;
 }
 
-.row:nth-of-type(1) .vote-container:nth-child(4) {
+.row:nth-of-type(1) input:nth-child(3) {
     border-bottom: 3px solid rgb(55, 0, 206);
 }
 
-.row:nth-of-type(1) .vote-container:nth-child(5) {
+.row:nth-of-type(1) input:nth-child(4) {
     border-bottom: 3px solid white;
 }
 
-.row:nth-of-type(1) .vote-container:nth-child(6) {
+.row:nth-of-type(1) input:nth-child(5) {
     border-bottom: 3px solid red;
 }
 
-.row:nth-of-type(1) .vote-container:nth-child(7) {
+.row:nth-of-type(1) input:nth-child(6) {
     border-bottom: 3px solid blue;
 }
 
-.row:nth-child(n+8):nth-child(-n+13) {
-    background-color: rgba(0, 255, 221, 0.1);
-}
 
 .row {
-    background-color: rgba(45, 42, 248, 0.1);
+    background-color: rgba(45, 42, 248, 0.2);
 }
 
-.row:nth-child(n+8):nth-child(-n+13) {
+.row:nth-child(n+9){
     background-color: rgba(0, 255, 221, 0.1);
 }
 
-.row:nth-child(-n+13) {
-    background-color: rgba(243, 160, 6, 0.1);
+
+.row:nth-child(n+15){
+    background-color: rgba(208, 255, 0, 0.1);
 }
+
 
 .row:nth-child(1) {
-    background-color: transparent
+    background-color: transparent;
 }
-
 
 #container {
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 20px;
     text-align: center;
     padding-bottom: 100px;
-
 }
 
 #end-vote-container {
     position: fixed;
     bottom: 0px;
-    
     width: 100%;
-
     text-align: center;
-        padding-bottom: 40px;
-
-
+    padding-bottom: 40px;
 }
 
 #end-vote-btn {
