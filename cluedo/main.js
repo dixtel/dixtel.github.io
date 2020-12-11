@@ -69,8 +69,12 @@ class Person {
         return this.possibility[board_element];
     }
 
-    is_board_elemtn_blocked(board_element) {
+    is_board_element_blocked(board_element) {
         return this.blocked_board_elements.includes(board_element);
+    }
+
+    is_board_element_voted(board_element) {
+        return this.current_voted_elements.includes(board_element);
     }
 
     static get_id(person_name, board_element) {
@@ -109,10 +113,10 @@ class Interface {
                 else
                     poss = poss.toFixed(2);
 
-                document.getElementById(id).querySelector("button").innerText = poss;
+                document.getElementById(id).querySelector("div").innerText = poss;
 
-                if (person.is_board_elemtn_blocked(board_element)) {
-                    document.getElementById(id).querySelector("button").disabled = true;
+                if (person.is_board_element_blocked(board_element)) {
+                    document.getElementById(id).querySelector("div").disabled = true;
                 }
             }
         }
@@ -149,7 +153,7 @@ class Interface {
                 let board_element = BoardElements[j];
 
                 let id = Person.get_id(person_name, board_element);
-                document.getElementById(id).querySelector(".vote-button").disabled = false;
+                document.getElementById(id).querySelector(".vote").disabled = false;
             }
         }
     }
@@ -186,6 +190,14 @@ function block_board_element(elem) {
 }
 
 function vote(person_id, elem) {
+    let board_element = elem.parentElement.parentElement.querySelector(".board-element-name").innerText;
+    
+    if (_global_persons[BoardPersons[person_id]].is_board_element_blocked(board_element))
+        return;
+
+    if (_global_persons[BoardPersons[person_id]].is_board_element_voted(board_element))
+        return;
+    
     if (_global_current_voted_person == null) {
         _global_current_voted_person = BoardPersons[person_id];
     } else {
@@ -193,7 +205,6 @@ function vote(person_id, elem) {
             return;
     }
 
-    let board_element = elem.parentElement.parentElement.querySelector(".board-element-name").innerText;
     _global_persons[BoardPersons[person_id]].vote(board_element);
     elem.disabled = true;
     Interface.enable_end_vote();
